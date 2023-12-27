@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nunes Sports Products</title>
+</head>
+<body>
+    <h1>Products</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Code</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.code }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.price }}</td>
+                <td><a href="{{ url_for('edit', id=product.id) }}">Edit</a></td>
+                <td><a href="{{ url_for('delete', id=product.id) }}">Delete</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <h2>Create New Product</h2>
+    <form action="/create" method="post">
+        <label for="name">Name:</label>
+        <input type="text" name="name" required><br>
+        <label for="code">Code:</label>
+        <input type="text" name="code" required><br>
+        <label for="description">Description:</label>
+        <input type="text" name="description"><br>
+        <label for="price">Price:</label>
+        <input type="text" name="price" required><br>
+        <input type="submit" value="Create">
+    </form>
+</body>
+</html>
